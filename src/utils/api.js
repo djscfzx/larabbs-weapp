@@ -123,7 +123,7 @@ const login = async (params = {}) => {
   return authResponse
 }
 
-//  退出登录
+// 退出登录
 const logout = async (params = {}) => {
   let accessToken = wepy.getStorageSync('access_token')
   // 调用删除 Token 接口，让 Token 失效
@@ -143,10 +143,35 @@ const logout = async (params = {}) => {
   return logoutResponse
 }
 
+// 上传头像
+const updateFile = async (options = {}) => {
+  // 显示loading
+  wepy.showLoading({title: '上传中'})
+
+  // 获取 token
+  let accessToken = await getToken()
+
+  // 拼接url
+  options.url = host + '/' + options.url
+  let header = options.header || {}
+  // 将 token 设置在 header 中
+  header.Authorization = 'Bearer ' + accessToken
+  options.header = header
+
+  // 上传文件
+  let response = await wepy.uploadFile(options)
+
+  // 隐藏 loading
+  wepy.hideLoading()
+
+  return response
+}
+
 export default {
   request,
   authRequest,
   refreshToken,
   login,
-  logout
+  logout,
+  updateFile
 }
