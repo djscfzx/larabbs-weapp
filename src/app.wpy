@@ -72,9 +72,9 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
-    // wepy.login().then(res => {
-    //   console.log('login: ', res)
-    // })
+    wepy.login().then(res => {
+      console.log('login: ', res)
+    })
   }
 }
 </script>
