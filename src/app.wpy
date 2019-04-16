@@ -90,11 +90,10 @@ export default class extends wepy.app {
     }, 60000)
     // 获取用户权限
     this.getPerms()
-    /*
+    // 登录成功显示 code
     wepy.login().then(res => {
       console.log('login: ', res)
     })
-    */
   }
 
   // 获取未读消息数
