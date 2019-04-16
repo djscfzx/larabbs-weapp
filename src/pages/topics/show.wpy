@@ -70,6 +70,8 @@ page{
 
         // 格式化 updated_at
         topic.updated_at_diff = util.diffForHumans(topic.updated_at)
+        // 解决小程序中图片太大显示不下的问题
+        topic.body = topic.body.replace(/<img/gi, '<img style="max-width:100%;height:auto" ')
 
         this.topic = topic
         this.$apply()
